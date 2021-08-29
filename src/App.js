@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import { render } from 'react-dom/cjs/react-dom.development';
 import Item from './Item.js';
 import Header from './Header.js';
 import PostForm from './PostForm';
@@ -11,6 +10,8 @@ class App extends React.Component {
     date: new Date(),
     aa:10,
     timeId: -1,
+    // ts: Date, message: string
+    items:[],
   };
 
   //componentを呼び出した直後に呼び出す処理
@@ -31,16 +32,36 @@ class App extends React.Component {
   }
   
 
+  handleSubmit = (newItem) => {
+    const {items} = this.state;
+    const newItems = [newItem, ...items];
+    this.setState({ items: newItems});
+  }
 
+  handleDelete = (item) => {
+    const newItem = this.state.items.filter( o => {
+      return item.ts !== o.ts;
+    })
+    this.setState({ items: newItem });
+  }
 
   render(){
     return (
       <div className="App">
         <Header />
-        <PostForm />
+        <PostForm onSubmit={this.handleSubmit}/>
         <div>
-          {this.state.date.toString()}
-          <Item />
+          {this.state.date.toLocaleString()}
+          {this.state.items.map( (item, index) => {
+            return (
+            <Item 
+              key={index} 
+              item={item}
+              onDelete={this.handleDelete}
+            />
+            )
+          })}
+          
         </div>
     </div>
     )

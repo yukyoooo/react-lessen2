@@ -1,15 +1,19 @@
 import React from 'react';
 
 export default class Item extends React.Component {
-    state = {
-        ids:[1,2,3],
+    handleClickDelete = () =>{
+        this.props.onDelete(this.props.item);
     }
 
     render() {
+        const {item} = this.props;
         return ( 
-            this.state.ids.map(id => {
-                return <div>{id}</div>;
-            })
+            <div className="tweet">
+                <time>{item.ts.toLocaleString()}</time>
+                <br />
+                {item.message}
+                <button type="button" onClick={this.handleClickDelete}>削除</button>
+            </div>
         )
     }
 }
