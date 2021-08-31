@@ -1,15 +1,21 @@
 import React from "react";
 import PostForm from "./PostForm";
 import Tweet from "./tweet.js";
+import { connect } from "react-redux";
 
+function saveTweets(tweets){
+  localStorage.setItem('tweets', JSON.stringify(tweets));
+}
 class Timeline extends React.Component {
   state = {
     date: new Date(),
-    aa: 10,
-    timeId: -1,
-    // ts: Date, message: string
-    tweets: [],
+    timeId: 0,
   };
+
+  //componentのpropsが更新された時に呼び出す処理
+  componentDidUpdate(){
+    saveTweets(this.props.tweets);
+  }
 
   //componentを呼び出した直後に呼び出す処理
   componentDidMount() {
@@ -29,16 +35,11 @@ class Timeline extends React.Component {
   }
 
   handleSubmit = (newTweet) => {
-    const { tweets } = this.state;
-    const newTweets = [newTweet, ...tweets];
-    this.setState({ tweets: newTweets });
+    this.props.dispatch({ type: 'ADD_TWEET', payload: newTweet });
   };
 
   handleDelete = (tweet) => {
-    const newTweet = this.state.tweets.filter((o) => {
-      return tweet.ts !== o.ts;
-    });
-    this.setState({ tweets: newTweet });
+    this.props.dispatch({ type: 'DELETE_TWEET', payload: tweet });
   };
 
   render() {
@@ -47,7 +48,7 @@ class Timeline extends React.Component {
         <PostForm onSubmit={this.handleSubmit} />
         <div>
           {this.state.date.toLocaleString()}
-          {this.state.tweets.map((tweet, index) => {
+          {this.props.tweets.map((tweet, index) => {
             return (
               <Tweet key={index} tweet={tweet} onDelete={this.handleDelete} />
             );
@@ -58,4 +59,10 @@ class Timeline extends React.Component {
   }
 }
 
-export default Timeline;
+const mapStateToProps = (state) => {
+  return {
+    tweets: state.tweets,
+  };
+};
+
+export default connect(mapStateToProps)(Timeline);
