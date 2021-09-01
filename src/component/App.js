@@ -1,4 +1,4 @@
-import "./App.scss";
+import "../App.scss";
 import React from "react";
 import Header from "./Header.js";
 import Timeline from "./Timeline";

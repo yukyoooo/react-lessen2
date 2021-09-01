@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import App from './App';
+import App from './component/App';
 import reportWebVitals from './reportWebVitals';
 
 function loadTweets() {
@@ -45,7 +45,11 @@ const reducer = (state, action) => {
 };
 
 
-const store = createStore(reducer, initialState);
+const store = createStore(
+  reducer, 
+  initialState,
+  compose(process.env.NODE_ENV === 'development' && window.devToolsExtension ? window.devToolsExtension() : f => f)
+  );
 ReactDOM.render((
   <Provider store={store}>
     <App />
