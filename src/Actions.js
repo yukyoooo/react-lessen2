@@ -3,6 +3,7 @@ export const ADD_TWEET = 'ADD_TWEET';
 export const DELETE_TWEET = 'DELETE_TWEET';
 export const EDIT_VALUE = 'form/EDIT_VALUE';
 export const RESET = 'form/RESET';
+export const TOGGLE_PROFILE_MODAL = 'profilemodal/TOGGLE';
 
 // Action Creators
 export const addTweet = (newTweet) => {
@@ -18,3 +19,6 @@ export const reset = () => {
   return { type: RESET };
 }
 
+export const toggleProfileModal = (visibility) => {
+  return { type: TOGGLE_PROFILE_MODAL, payload: visibility };
+}
