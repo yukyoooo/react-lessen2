@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './component/App';
-import reducer from './reducer.js'
+import reducer from './reducers'
 import reportWebVitals from './reportWebVitals';
 
 const store = createStore(
