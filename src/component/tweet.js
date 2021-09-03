@@ -15,7 +15,7 @@ export default class Tweet extends React.Component {
         <div className="tweet-body">
           <h5>
             <span>{tweet.username || 'No Name'}</span>
-            <time className="text-nuted">・{tweet.ts.toLocaleString()}</time>
+            <time className="text-muted">・{tweet.ts.toLocaleString()}</time>
           </h5>
           <p>{tweet.message}</p>
           <button
