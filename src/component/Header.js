@@ -13,7 +13,7 @@ function Header(props) {
           className="btn btn-link"
           onClick={props.showProfileModal}
         >
-        {props.user_name}
+        {props.user_name || 'ゲスト'}
         </button>
       </div>
     </header>
@@ -22,7 +22,7 @@ function Header(props) {
 
 const mapStateToProps = (state) => {
   return {
-    user_name: state.user.name,
+    user_name: state.user.profile.id,
   };
 };
 const mapDispatchToProps = (dispatch) => {

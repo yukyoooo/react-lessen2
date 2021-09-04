@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { compose, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { compose, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
@@ -10,7 +11,9 @@ import reportWebVitals from './reportWebVitals';
 
 const store = createStore(
   reducer, 
-  compose(process.env.NODE_ENV === 'development' && window.devToolsExtension ? window.devToolsExtension() : f => f)
+  compose(
+    applyMiddleware(thunk),
+    process.env.NODE_ENV === 'development' && window.devToolsExtension ? window.devToolsExtension() : f => f)
   );
 ReactDOM.render((
   <Provider store={store}>
