@@ -2,12 +2,15 @@ import React from "react";
 import logo from "../image/logo.svg";
 import { connect } from "react-redux";
 import { toggleProfileModal } from '../Actions';
+import { NavLink } from 'react-router-dom';
 
 function Header(props) {
   return (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <div>
+      <NavLink exact to="/" activeClassName="text-info" className="btn btn-link">Home</NavLink>
+      <NavLink to="/qiita" activeClassName="text-info" className="btn btn-link">Qiita</NavLink>
+      <div className="w-100 text-right">
         <button
           type="button"
           className="btn btn-link"
