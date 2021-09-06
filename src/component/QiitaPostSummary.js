@@ -7,6 +7,7 @@ const QiitaPostSummary = ({ post }) => {
         title,
         created_at,
         user: { name: user_name, id: user_id, profile_image_url },
+        tags,
     } = post;
 
     return (
@@ -17,6 +18,7 @@ const QiitaPostSummary = ({ post }) => {
             <div className="tweet-body">
                 <h5>
                     <span>{ user_name || user_id || 'No_name' }</span>
+                    <span className="tag">{ tags.map(tag => tag.name).join('. ') }</span>
                     <time className="text-muted">・{ (new Date(created_at)).toLocaleString() }</time>
                 </h5>
                 <Link to={ `qiita/${ id }`}>

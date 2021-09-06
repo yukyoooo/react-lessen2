@@ -8,7 +8,7 @@ const ProfileModal = (props) =>{
     useEffect(() => {
         const storeKey = localStorage.getItem('apiKey');
         if (storeKey) props.fetchProfile(storeKey);
-    },[props]);
+    },[]);
 
     const { id, profile_image_url } = props.profile;
 
