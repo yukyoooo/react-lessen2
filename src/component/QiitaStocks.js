@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { searchQiitaPosts } from '../Actions';
-
+import QiitaPostSummary from "./QiitaPostSummary";
 
 class QiitaStocks extends React.PureComponent {
     componentWillMount() {
@@ -25,7 +25,7 @@ class QiitaStocks extends React.PureComponent {
                 <h2>Qiita ストック一覧</h2>
 
                 {posts.map(post =>(
-                    <div>{post.title}</div>
+                    <QiitaPostSummary key={post.id} post={post} />
                 ))}
             </div>
         )
