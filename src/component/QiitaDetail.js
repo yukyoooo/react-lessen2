@@ -21,6 +21,7 @@ class QiitaDetail extends React.Component{
         return (
             <div>
                 <h2>{ title }</h2>
+                <h3>({this.props.match.params.post_id})</h3>
                 <div className="mb-3 d-flex justify-content-between">
                     <div>
                         <img src={ profile_image_url } alt={ user_name || user_id } width="40" className="pr-2" />
