@@ -2,7 +2,7 @@ import React from 'react';
 import reactDom from 'react-dom';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // ReactDOM.render(
@@ -47,7 +47,7 @@ class Clock extends React.Component{
 }
   
 reactDom.render(
-  <Clock />,
+  <App />,
   document.getElementById('root')
 );
 
