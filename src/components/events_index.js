@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { readEvents } from "../actions";
-
+import { Link } from "react-router-dom";
 class EventsIndex extends Component {
   //componentが呼ばれた時に実行
   componentDidMount() {
@@ -21,22 +21,25 @@ class EventsIndex extends Component {
 
   render() {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Body</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.renderEvents()}
-        </tbody>
-      </table>
+      <React.Fragment>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Body</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.renderEvents()}
+          </tbody>
+        </table>
+        <Link to="/event/new">New Event</Link>
+      </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = (state) => ({ events: state.events });
-const mapDispathToProps = { readEvents };
-export default connect(mapStateToProps, mapDispathToProps)(EventsIndex);
+const mapDispatchToProps = { readEvents };
+export default connect(mapStateToProps, mapDispatchToProps)(EventsIndex);
