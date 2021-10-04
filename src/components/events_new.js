@@ -40,7 +40,6 @@ class EventsNew extends Component {
         <div>
           <RaisedButton label="Submit" type="submit" style={style} disabled={pristine || submitting || invalid}/>
           <RaisedButton label="Cancel"style={style} containerElement={<Link to="/" />} />
-          
         </div>
       </form>
     );
