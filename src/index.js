@@ -6,18 +6,24 @@ import reducer from './reducers';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import './index.css';
 import EventsIndex from './components/events_index';
+import EventsShow from './components/events_show';
+import EventsNew from './components/events_new';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import reportWebVitals from './reportWebVitals';
 import thunk from 'redux-thunk';
-import EventsNew from './components/events_new';
 
+const enhancer = process.env.NODE_ENV === 'development' ?
+  composeWithDevTools(applyMiddleware(thunk)): applyMiddleware(thunk)
 const store = createStore(reducer, applyMiddleware(thunk))
 
 reactDom.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/event/new" component={EventsNew} />
+        <Route path="/events/new" component={EventsNew} />
+        <Route path="/events/:id" component={EventsShow} />
         <Route exact path="/" component={EventsIndex} />
+        <Route exact path="/events" component={EventsIndex} />
       </Switch>
     </BrowserRouter>
   </Provider>,
